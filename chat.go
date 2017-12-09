@@ -145,18 +145,18 @@ func handleListen() {
 	for {
 		conn, err := l.Accept()
 		if err != nil {
-			fmt.Printf("\n[WARNING] Fail to accept: %v\n", err)
+			fmt.Printf("\n[chat WARNING] Fail to accept: %v\n", err)
 			continue
 		}
-		fmt.Printf("\n[INFO] New connection is comming from %s\n", conn.RemoteAddr().String())
+		fmt.Printf("\n[chat INFO] New connection is comming from %s\n", conn.RemoteAddr().String())
 		if !busy {
-			fmt.Printf("[INFO] Do you want to connect? (y/n)\n")
+			fmt.Printf("[chat INFO] Do you want to connect? (y/n)\n")
 			if getBoolChoice() {
 				busy = true
 				createSession(conn, username, "").chatLoop(false)
 				busy = false
 			} else {
-				fmt.Printf("[INFO] Refused connection from %s\n\n", conn.RemoteAddr().String())
+				fmt.Printf("[chat INFO] Refused connection from %s\n\n", conn.RemoteAddr().String())
 				conn.Close()
 			}
 		}
